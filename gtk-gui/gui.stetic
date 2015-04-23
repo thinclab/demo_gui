@@ -64,7 +64,7 @@
           <widget class="Gtk.HPaned" id="hpaned1">
             <property name="MemberName" />
             <property name="CanFocus">True</property>
-            <property name="Position">487</property>
+            <property name="Position">413</property>
             <property name="BorderWidth">3</property>
             <child>
               <widget class="Gtk.VBox" id="vbox">
@@ -87,7 +87,7 @@
                       </packing>
                     </child>
                     <child>
-                      <widget class="Gtk.Entry" id="entry1">
+                      <widget class="Gtk.Entry" id="grid_size_rows">
                         <property name="MemberName" />
                         <property name="CanFocus">True</property>
                         <property name="IsEditable">True</property>
@@ -114,7 +114,7 @@
                       </packing>
                     </child>
                     <child>
-                      <widget class="Gtk.Entry" id="entry2">
+                      <widget class="Gtk.Entry" id="grid_size_cols">
                         <property name="MemberName" />
                         <property name="CanFocus">True</property>
                         <property name="IsEditable">True</property>
@@ -153,7 +153,7 @@
                     <property name="MemberName" />
                     <property name="Spacing">6</property>
                     <child>
-                      <widget class="Gtk.RadioButton" id="radiobutton1">
+                      <widget class="Gtk.RadioButton" id="rdo_sim_drones">
                         <property name="MemberName" />
                         <property name="CanFocus">True</property>
                         <property name="Label" translatable="yes">Simulated Drones</property>
@@ -170,7 +170,7 @@
                       </packing>
                     </child>
                     <child>
-                      <widget class="Gtk.RadioButton" id="radiobutton2">
+                      <widget class="Gtk.RadioButton" id="rdo_phys_drones">
                         <property name="MemberName" />
                         <property name="CanFocus">True</property>
                         <property name="Label" translatable="yes">Physical Drones</property>
@@ -222,7 +222,7 @@
                       </packing>
                     </child>
                     <child>
-                      <widget class="Gtk.ComboBox" id="combobox1">
+                      <widget class="Gtk.ComboBox" id="cbo_scenario">
                         <property name="MemberName" />
                         <property name="IsTextCombo">True</property>
                         <property name="Items" translatable="yes" />
@@ -273,7 +273,7 @@
                                   </packing>
                                 </child>
                                 <child>
-                                  <widget class="Gtk.Entry" id="entry3">
+                                  <widget class="Gtk.Entry" id="safe_house_row">
                                     <property name="MemberName" />
                                     <property name="CanFocus">True</property>
                                     <property name="IsEditable">True</property>
@@ -300,7 +300,7 @@
                                   </packing>
                                 </child>
                                 <child>
-                                  <widget class="Gtk.Entry" id="entry4">
+                                  <widget class="Gtk.Entry" id="safe_house_col">
                                     <property name="MemberName" />
                                     <property name="CanFocus">True</property>
                                     <property name="IsEditable">True</property>
@@ -351,7 +351,7 @@
                                   </packing>
                                 </child>
                                 <child>
-                                  <widget class="Gtk.Entry" id="entry11">
+                                  <widget class="Gtk.Entry" id="max_moves">
                                     <property name="MemberName" />
                                     <property name="CanFocus">True</property>
                                     <property name="IsEditable">True</property>
@@ -416,10 +416,13 @@
                                               </packing>
                                             </child>
                                             <child>
-                                              <widget class="Gtk.ComboBox" id="combobox5">
+                                              <widget class="Gtk.ComboBox" id="cbo_fug_mode">
                                                 <property name="MemberName" />
                                                 <property name="IsTextCombo">True</property>
-                                                <property name="Items" translatable="yes" />
+                                                <property name="Items" translatable="yes">Policy File
+Editor Policy
+Random
+Keyboard</property>
                                               </widget>
                                               <packing>
                                                 <property name="Position">1</property>
@@ -429,7 +432,16 @@
                                               </packing>
                                             </child>
                                             <child>
-                                              <widget class="Gtk.Entry" id="entry5">
+                                              <widget class="Gtk.FileChooserButton" id="filechsr_fugitive">
+                                                <property name="MemberName" />
+                                              </widget>
+                                              <packing>
+                                                <property name="Position">2</property>
+                                                <property name="AutoSize">True</property>
+                                              </packing>
+                                            </child>
+                                            <child>
+                                              <widget class="Gtk.Entry" id="fug_row">
                                                 <property name="MemberName" />
                                                 <property name="CanFocus">True</property>
                                                 <property name="IsEditable">True</property>
@@ -438,7 +450,7 @@
                                                 <property name="InvisibleChar">●</property>
                                               </widget>
                                               <packing>
-                                                <property name="Position">2</property>
+                                                <property name="Position">3</property>
                                                 <property name="AutoSize">False</property>
                                                 <property name="Expand">False</property>
                                               </packing>
@@ -449,14 +461,14 @@
                                                 <property name="LabelProp" translatable="yes">X</property>
                                               </widget>
                                               <packing>
-                                                <property name="Position">3</property>
+                                                <property name="Position">4</property>
                                                 <property name="AutoSize">True</property>
                                                 <property name="Expand">False</property>
                                                 <property name="Fill">False</property>
                                               </packing>
                                             </child>
                                             <child>
-                                              <widget class="Gtk.Entry" id="entry6">
+                                              <widget class="Gtk.Entry" id="fug_col">
                                                 <property name="MemberName" />
                                                 <property name="CanFocus">True</property>
                                                 <property name="IsEditable">True</property>
@@ -465,7 +477,7 @@
                                                 <property name="InvisibleChar">●</property>
                                               </widget>
                                               <packing>
-                                                <property name="Position">4</property>
+                                                <property name="Position">5</property>
                                                 <property name="AutoSize">False</property>
                                                 <property name="Expand">False</property>
                                               </packing>
@@ -478,7 +490,7 @@
                                                 </child>
                                               </widget>
                                               <packing>
-                                                <property name="Position">5</property>
+                                                <property name="Position">6</property>
                                                 <property name="AutoSize">False</property>
                                               </packing>
                                             </child>
@@ -507,10 +519,13 @@
                                               </packing>
                                             </child>
                                             <child>
-                                              <widget class="Gtk.ComboBox" id="combobox6">
+                                              <widget class="Gtk.ComboBox" id="cbo_uav1_mode">
                                                 <property name="MemberName" />
                                                 <property name="IsTextCombo">True</property>
-                                                <property name="Items" translatable="yes" />
+                                                <property name="Items" translatable="yes">Policy File
+Editor Policy
+Random
+Keyboard</property>
                                               </widget>
                                               <packing>
                                                 <property name="Position">1</property>
@@ -520,7 +535,16 @@
                                               </packing>
                                             </child>
                                             <child>
-                                              <widget class="Gtk.Entry" id="entry7">
+                                              <widget class="Gtk.FileChooserButton" id="filechsr_uav1">
+                                                <property name="MemberName" />
+                                              </widget>
+                                              <packing>
+                                                <property name="Position">2</property>
+                                                <property name="AutoSize">True</property>
+                                              </packing>
+                                            </child>
+                                            <child>
+                                              <widget class="Gtk.Entry" id="uav1_row">
                                                 <property name="MemberName" />
                                                 <property name="CanFocus">True</property>
                                                 <property name="IsEditable">True</property>
@@ -529,7 +553,7 @@
                                                 <property name="InvisibleChar">●</property>
                                               </widget>
                                               <packing>
-                                                <property name="Position">2</property>
+                                                <property name="Position">3</property>
                                                 <property name="AutoSize">False</property>
                                                 <property name="Expand">False</property>
                                               </packing>
@@ -540,14 +564,14 @@
                                                 <property name="LabelProp" translatable="yes">X</property>
                                               </widget>
                                               <packing>
-                                                <property name="Position">3</property>
+                                                <property name="Position">4</property>
                                                 <property name="AutoSize">True</property>
                                                 <property name="Expand">False</property>
                                                 <property name="Fill">False</property>
                                               </packing>
                                             </child>
                                             <child>
-                                              <widget class="Gtk.Entry" id="entry8">
+                                              <widget class="Gtk.Entry" id="uav1_col">
                                                 <property name="MemberName" />
                                                 <property name="CanFocus">True</property>
                                                 <property name="IsEditable">True</property>
@@ -556,7 +580,7 @@
                                                 <property name="InvisibleChar">●</property>
                                               </widget>
                                               <packing>
-                                                <property name="Position">4</property>
+                                                <property name="Position">5</property>
                                                 <property name="AutoSize">False</property>
                                                 <property name="Expand">False</property>
                                               </packing>
@@ -569,7 +593,7 @@
                                                 </child>
                                               </widget>
                                               <packing>
-                                                <property name="Position">5</property>
+                                                <property name="Position">6</property>
                                                 <property name="AutoSize">False</property>
                                               </packing>
                                             </child>
@@ -598,10 +622,13 @@
                                               </packing>
                                             </child>
                                             <child>
-                                              <widget class="Gtk.ComboBox" id="combobox7">
+                                              <widget class="Gtk.ComboBox" id="cbo_uav2_mode">
                                                 <property name="MemberName" />
                                                 <property name="IsTextCombo">True</property>
-                                                <property name="Items" translatable="yes" />
+                                                <property name="Items" translatable="yes">Policy File
+Editor Policy
+Random
+Keyboard</property>
                                               </widget>
                                               <packing>
                                                 <property name="Position">1</property>
@@ -611,7 +638,16 @@
                                               </packing>
                                             </child>
                                             <child>
-                                              <widget class="Gtk.Entry" id="entry9">
+                                              <widget class="Gtk.FileChooserButton" id="filechsr_uav2">
+                                                <property name="MemberName" />
+                                              </widget>
+                                              <packing>
+                                                <property name="Position">2</property>
+                                                <property name="AutoSize">True</property>
+                                              </packing>
+                                            </child>
+                                            <child>
+                                              <widget class="Gtk.Entry" id="uav2_row">
                                                 <property name="MemberName" />
                                                 <property name="CanFocus">True</property>
                                                 <property name="IsEditable">True</property>
@@ -620,7 +656,7 @@
                                                 <property name="InvisibleChar">●</property>
                                               </widget>
                                               <packing>
-                                                <property name="Position">2</property>
+                                                <property name="Position">3</property>
                                                 <property name="AutoSize">False</property>
                                                 <property name="Expand">False</property>
                                               </packing>
@@ -631,14 +667,14 @@
                                                 <property name="LabelProp" translatable="yes">X</property>
                                               </widget>
                                               <packing>
-                                                <property name="Position">3</property>
+                                                <property name="Position">4</property>
                                                 <property name="AutoSize">True</property>
                                                 <property name="Expand">False</property>
                                                 <property name="Fill">False</property>
                                               </packing>
                                             </child>
                                             <child>
-                                              <widget class="Gtk.Entry" id="entry10">
+                                              <widget class="Gtk.Entry" id="uav2_col">
                                                 <property name="MemberName" />
                                                 <property name="CanFocus">True</property>
                                                 <property name="IsEditable">True</property>
@@ -647,7 +683,7 @@
                                                 <property name="InvisibleChar">●</property>
                                               </widget>
                                               <packing>
-                                                <property name="Position">4</property>
+                                                <property name="Position">5</property>
                                                 <property name="AutoSize">False</property>
                                                 <property name="Expand">False</property>
                                               </packing>
@@ -660,7 +696,7 @@
                                                 </child>
                                               </widget>
                                               <packing>
-                                                <property name="Position">5</property>
+                                                <property name="Position">6</property>
                                                 <property name="AutoSize">False</property>
                                               </packing>
                                             </child>
@@ -677,9 +713,9 @@
                                   </widget>
                                 </child>
                                 <child>
-                                  <widget class="Gtk.Label" id="GtkLabel3">
+                                  <widget class="Gtk.Label" id="GtkLabel6">
                                     <property name="MemberName" />
-                                    <property name="LabelProp" translatable="yes">&lt;b&gt;Start Positions&lt;/b&gt;</property>
+                                    <property name="LabelProp" translatable="yes">&lt;b&gt;Control and Start Positions&lt;/b&gt;</property>
                                     <property name="UseMarkup">True</property>
                                   </widget>
                                   <packing>
@@ -699,7 +735,7 @@
                       </widget>
                     </child>
                     <child>
-                      <widget class="Gtk.Label" id="GtkLabel4">
+                      <widget class="Gtk.Label" id="GtkLabel7">
                         <property name="MemberName" />
                         <property name="LabelProp" translatable="yes">&lt;b&gt;Scenario Settings&lt;/b&gt;</property>
                         <property name="UseMarkup">True</property>
@@ -745,7 +781,7 @@
                       </packing>
                     </child>
                     <child>
-                      <widget class="Gtk.Button" id="button1">
+                      <widget class="Gtk.Button" id="btn_launch">
                         <property name="MemberName" />
                         <property name="CanFocus">True</property>
                         <property name="Type">TextOnly</property>
@@ -774,7 +810,10 @@
               </packing>
             </child>
             <child>
-              <placeholder />
+              <widget class="Gtk.Fixed" id="PolicyArea">
+                <property name="MemberName" />
+                <property name="HasWindow">False</property>
+              </widget>
             </child>
           </widget>
           <packing>
