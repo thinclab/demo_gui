@@ -189,6 +189,7 @@ public partial class MainWindow
 		this.vbox.Spacing = 6;
 		// Container child vbox.Gtk.Box+BoxChild
 		this.hbox1 = new global::Gtk.HBox ();
+		this.hbox1.Name = "hbox1";
 		this.hbox1.Spacing = 6;
 		// Container child hbox1.Gtk.Box+BoxChild
 		this.label1 = new global::Gtk.Label ();
@@ -295,7 +296,9 @@ public partial class MainWindow
 		w13.Fill = false;
 		// Container child hbox2.Gtk.Box+BoxChild
 		this.cbo_scenario = global::Gtk.ComboBox.NewText ();
+		this.cbo_scenario.AppendText (global::Mono.Unix.Catalog.GetString ("Fugitive"));
 		this.cbo_scenario.Name = "cbo_scenario";
+		this.cbo_scenario.Active = 0;
 		this.hbox2.Add (this.cbo_scenario);
 		global::Gtk.Box.BoxChild w14 = ((global::Gtk.Box.BoxChild)(this.hbox2 [this.cbo_scenario]));
 		w14.Position = 1;
@@ -720,9 +723,19 @@ public partial class MainWindow
 		if ((this.Child != null)) {
 			this.Child.ShowAll ();
 		}
-		this.DefaultWidth = 1162;
+		this.DefaultWidth = 1126;
 		this.DefaultHeight = 744;
+		this.filechsr_fugitive.Hide ();
+		this.filechsr_uav1.Hide ();
+		this.filechsr_uav2.Hide ();
 		this.Show ();
 		this.DeleteEvent += new global::Gtk.DeleteEventHandler (this.OnDeleteEvent);
+		this.OpenPolicyAction.Activated += new global::System.EventHandler (this.mnu_open);
+		this.SavePolicyAction.Activated += new global::System.EventHandler (this.mnu_save);
+		this.QuitAction.Activated += new global::System.EventHandler (this.on_quit);
+		this.cbo_fug_mode.Changed += new global::System.EventHandler (this.fugitive_control_changed);
+		this.cbo_uav1_mode.Changed += new global::System.EventHandler (this.uav1_control_changed);
+		this.cbo_uav2_mode.Changed += new global::System.EventHandler (this.uav2_control_changed);
+		this.btn_launch.Clicked += new global::System.EventHandler (this.launch_button);
 	}
 }

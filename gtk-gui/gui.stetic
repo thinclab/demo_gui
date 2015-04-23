@@ -8,7 +8,7 @@
     <widget-library name="glade-sharp, Version=2.12.0.0, Culture=neutral, PublicKeyToken=35e10195dab3c99f" />
     <widget-library name="../bin/Debug/demo_gui.exe" internal="true" />
   </import>
-  <widget class="Gtk.Window" id="MainWindow" design-size="1162 744">
+  <widget class="Gtk.Window" id="MainWindow" design-size="1126 744">
     <action-group name="Default">
       <action id="FileAction">
         <property name="Type">Action</property>
@@ -21,17 +21,20 @@
         <property name="Accelerator">&lt;Alt&gt;&lt;Mod2&gt;o</property>
         <property name="Label" translatable="yes">_Open Policy</property>
         <property name="ShortLabel" translatable="yes">_Open Policy</property>
+        <signal name="Activated" handler="mnu_open" />
       </action>
       <action id="SavePolicyAction">
         <property name="Type">Action</property>
         <property name="Accelerator">&lt;Alt&gt;&lt;Mod2&gt;q</property>
         <property name="Label" translatable="yes">_Save Policy</property>
         <property name="ShortLabel" translatable="yes">_Save Policy</property>
+        <signal name="Activated" handler="mnu_save" />
       </action>
       <action id="QuitAction">
         <property name="Type">Action</property>
         <property name="Label" translatable="yes">_Quit</property>
         <property name="ShortLabel" translatable="yes">_Quit</property>
+        <signal name="Activated" handler="on_quit" />
       </action>
     </action-group>
     <property name="MemberName" />
@@ -225,7 +228,8 @@
                       <widget class="Gtk.ComboBox" id="cbo_scenario">
                         <property name="MemberName" />
                         <property name="IsTextCombo">True</property>
-                        <property name="Items" translatable="yes" />
+                        <property name="Items" translatable="yes">Fugitive</property>
+                        <property name="Active">0</property>
                       </widget>
                       <packing>
                         <property name="Position">1</property>
@@ -423,6 +427,7 @@
 Editor Policy
 Random
 Keyboard</property>
+                                                <signal name="Changed" handler="fugitive_control_changed" />
                                               </widget>
                                               <packing>
                                                 <property name="Position">1</property>
@@ -434,6 +439,7 @@ Keyboard</property>
                                             <child>
                                               <widget class="Gtk.FileChooserButton" id="filechsr_fugitive">
                                                 <property name="MemberName" />
+                                                <property name="Visible">False</property>
                                               </widget>
                                               <packing>
                                                 <property name="Position">2</property>
@@ -526,6 +532,7 @@ Keyboard</property>
 Editor Policy
 Random
 Keyboard</property>
+                                                <signal name="Changed" handler="uav1_control_changed" />
                                               </widget>
                                               <packing>
                                                 <property name="Position">1</property>
@@ -537,6 +544,7 @@ Keyboard</property>
                                             <child>
                                               <widget class="Gtk.FileChooserButton" id="filechsr_uav1">
                                                 <property name="MemberName" />
+                                                <property name="Visible">False</property>
                                               </widget>
                                               <packing>
                                                 <property name="Position">2</property>
@@ -629,6 +637,7 @@ Keyboard</property>
 Editor Policy
 Random
 Keyboard</property>
+                                                <signal name="Changed" handler="uav2_control_changed" />
                                               </widget>
                                               <packing>
                                                 <property name="Position">1</property>
@@ -640,6 +649,7 @@ Keyboard</property>
                                             <child>
                                               <widget class="Gtk.FileChooserButton" id="filechsr_uav2">
                                                 <property name="MemberName" />
+                                                <property name="Visible">False</property>
                                               </widget>
                                               <packing>
                                                 <property name="Position">2</property>
@@ -787,6 +797,7 @@ Keyboard</property>
                         <property name="Type">TextOnly</property>
                         <property name="Label" translatable="yes">Launch</property>
                         <property name="UseUnderline">True</property>
+                        <signal name="Clicked" handler="launch_button" />
                       </widget>
                       <packing>
                         <property name="Position">1</property>
