@@ -17,7 +17,7 @@ public struct PolicyNode {
 
 public partial class MainWindow: Gtk.Window
 {
-	protected string file_path = "/home/kbogert/gatac_workspace/src/gatacdronecontrol/bin/";
+	protected string file_path;
 
 	public string[] actions = {"Move North", "Move South", "Move East", "Move West", "Stay"};
 	public string[] observations = {"Enemy North", "Enemy South", "Enemy East", "Enemy West"};
@@ -36,6 +36,7 @@ public partial class MainWindow: Gtk.Window
 	public MainWindow () : base (Gtk.WindowType.Toplevel)
 	{
 		rnd = new Random ();
+		file_path = Directory.GetCurrentDirectory () + "/../../../gatacdronecontrol/bin/";
 		Build ();
 
 		init_controls ();
@@ -283,6 +284,8 @@ public partial class MainWindow: Gtk.Window
 		// start server
 //		string args = "-e \'/bin/bash -c \"export BASH_POST_RC=\\\"" + file_path + "simServerThree\\\"; exec bash\"\'";
 		string args = "-e \'/bin/bash -l -c \"" + file_path + "simServerThree\"\'";
+		if (rdo_phys_drones.Active)
+			args = "-e \'/bin/bash -l -c \"" + file_path + "tagServer\"\'";
 		System.Diagnostics.Process.Start ("/usr/bin/gnome-terminal", args);
 
 		System.Threading.Thread.Sleep (1000);
