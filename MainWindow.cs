@@ -298,7 +298,7 @@ public partial class MainWindow: Gtk.Window
 				show_error ("You must choose a policy file for the fugitive before launching");
 				return;
 			}
-			args += "policyClient f " + grid_size_rows.Text + " " + grid_size_cols.Text + " " + fug_row.Text + " " + fug_col.Text + " " + max_moves.Text + " \"" + filechsr_fugitive.Filename + "\"";
+			args += "policyClient f " + grid_size_rows.Text + " " + grid_size_cols.Text + " " + fug_row.Text + " " + fug_col.Text + " \"" + filechsr_fugitive.Filename + "\"";
 			break;
 		case 1:
 			// editor policy
@@ -306,7 +306,7 @@ public partial class MainWindow: Gtk.Window
 				show_error ("You must save the editor policy for the fugitive before launching");
 				return;
 			}
-			args += "policyClient f " + grid_size_rows.Text + " " + grid_size_cols.Text + " " + fug_row.Text + " " + fug_col.Text + " " + max_moves.Text + " \"" + editor_file + "\"";
+			args += "policyClient f " + grid_size_rows.Text + " " + grid_size_cols.Text + " " + fug_row.Text + " " + fug_col.Text +" \"" + editor_file + "\"";
 			break;
 		case 2:
 			// random
@@ -336,7 +336,7 @@ public partial class MainWindow: Gtk.Window
 				show_error ("You must choose a policy file for UAV1 before launching");
 				return;
 			}
-			args += "policyClient u " + grid_size_rows.Text + " " + grid_size_cols.Text + " " + uav1_row.Text + " " + uav1_col.Text + " " + max_moves.Text + " \"" + filechsr_uav1.Filename + "\"";
+			args += "policyClient u " + grid_size_rows.Text + " " + grid_size_cols.Text + " " + uav1_row.Text + " " + uav1_col.Text + " \"" + filechsr_uav1.Filename + "\"";
 			break;
 		case 1:
 			// editor policy
@@ -344,7 +344,7 @@ public partial class MainWindow: Gtk.Window
 				show_error ("You must save the editor policy for UAV1 before launching");
 				return;
 			}
-			args += "policyClient u " + grid_size_rows.Text + " " + grid_size_cols.Text + " " + uav1_row.Text + " " + uav1_col.Text + " " + max_moves.Text + " \"" + editor_file + "\"";
+			args += "policyClient u " + grid_size_rows.Text + " " + grid_size_cols.Text + " " + uav1_row.Text + " " + uav1_col.Text + " \"" + editor_file + "\"";
 			break;
 		case 2:
 			// random
@@ -374,7 +374,7 @@ public partial class MainWindow: Gtk.Window
 				show_error ("You must choose a policy file for UAV2 before launching");
 				return;
 			}
-			args += "policyClient u " + grid_size_rows.Text + " " + grid_size_cols.Text + " " + uav2_row.Text + " " + uav2_col.Text + " " + max_moves.Text + " \"" + filechsr_uav1.Filename + "\"";
+			args += "policyClient u " + grid_size_rows.Text + " " + grid_size_cols.Text + " " + uav2_row.Text + " " + uav2_col.Text + " \"" + filechsr_uav2.Filename + "\"";
 			break;
 		case 1:
 			// editor policy
@@ -382,7 +382,7 @@ public partial class MainWindow: Gtk.Window
 				show_error ("You must save the editor policy for UAV2 before launching");
 				return;
 			}
-			args += "policyClient u " + grid_size_rows.Text + " " + grid_size_cols.Text + " " + uav2_row.Text + " " + uav2_col.Text + " " + max_moves.Text + " \"" + editor_file + "\"";
+			args += "policyClient u " + grid_size_rows.Text + " " + grid_size_cols.Text + " " + uav2_row.Text + " " + uav2_col.Text + " \"" + editor_file + "\"";
 			break;
 		case 2:
 			// random
@@ -451,6 +451,7 @@ public partial class MainWindow: Gtk.Window
 		returnval.action.Name = "cbo_action" + nesting.ToString() + ":" + vertical.ToString();
 		returnval.action.Active = data.action;
 		this.PolicyArea.Put(returnval.action, (int)nesting * nestingSize, (int)vertical * verticalSize);
+		returnval.action.Show ();
 
 		for (int i = 0; i < data.children.Count; i++) {
 			// create and place label for observation
@@ -460,13 +461,13 @@ public partial class MainWindow: Gtk.Window
 			lbl.Text = observations [i];
 			lbl.Name = "lbl_obs" + nesting.ToString () + ":" + vertical.ToString ();
 			this.PolicyArea.Put (lbl, (int)nesting * nestingSize, (int)vertical * verticalSize);
+			lbl.Show();
 			returnval.obsLabels.Add (lbl);
 			// recurse
 
 			returnval.children.Add(_buildPolicyDisplay (data.children [i], nesting + 1, ref vertical));
 
 		}
-		ShowAll ();
 		return returnval;
 	}
 
