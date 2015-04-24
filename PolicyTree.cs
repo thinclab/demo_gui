@@ -18,7 +18,7 @@ namespace demo_gui
 {
 	public class Util {
 		public static void Tokenize(string str1, out List<string> tokens, char[] delimiterChars){
-			string [] tok = str1.Split(delimiterChars);
+			string [] tok = str1.Split(delimiterChars, StringSplitOptions.RemoveEmptyEntries);
 			tokens = new List<string>(tok);
 		}
 	}
@@ -34,6 +34,7 @@ namespace demo_gui
 			numObservations = numObs;
 			horizon = -1;
 			action = -1;
+			children = new List<PolicyTreeNode> ();
 		}
 
 		public void readPolicyTreeNode(System.IO.StreamReader policyfile, int hor){
@@ -95,7 +96,7 @@ namespace demo_gui
 						sw.Write("\t");
 					}
 					sw.Write ("obs ");sw.Write (obs);sw.Write(" -> ");
-					children[obs].printNode(numTabSpace+1);
+					sw.Write (children[obs].printNode(numTabSpace+1));
 				}
 			}
 			return sw.ToString ();
@@ -108,14 +109,13 @@ namespace demo_gui
 		uint horizon;
 		uint numObservations;
 
-		PolicyTree(){
+		public PolicyTree(){
 			horizon = 0;
 			numObservations = 0;
 			root = new PolicyTreeNode(numObservations);
 		}
 
-		void readPolicyTree(string fileName){
-			System.IO.StreamReader policyfile = new System.IO.StreamReader (fileName);
+		public void readPolicyTree(StreamReader policyfile){
 
 			bool horizonParsed = false;
 			bool numObsParsed = false;
@@ -169,13 +169,13 @@ namespace demo_gui
 
 		}
 
-		string printTree(){
+		public string printTree(){
 			StringWriter sw = new StringWriter ();
 
 			sw.Write ("HORIZON: ");sw.WriteLine(horizon);
 			sw.Write("OBSERVATIONS: ");sw.WriteLine(numObservations);
 			sw.Write("Vector 0: -> ");
-			root.printNode();
+			sw.Write(root.printNode());
 			return sw.ToString ();
 		}
 	};

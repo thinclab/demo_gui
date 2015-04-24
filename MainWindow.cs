@@ -1,6 +1,8 @@
 ﻿using System;
 using Gtk;
 using System.Diagnostics;
+using demo_gui;
+using System.IO;
 
 public partial class MainWindow: Gtk.Window
 {
@@ -10,10 +12,14 @@ public partial class MainWindow: Gtk.Window
 
 	protected string editor_file;
 
+	PolicyTree policyTree;
+
 
 	public MainWindow () : base (Gtk.WindowType.Toplevel)
 	{
 		Build ();
+
+		policyTree = new PolicyTree ();
 		init_controls ();
 	}
 
@@ -85,9 +91,8 @@ public partial class MainWindow: Gtk.Window
 		if (fc.Run() == (int)ResponseType.Accept) 
 		{
 			System.IO.StreamReader file = new System.IO.StreamReader(fc.Filename);
-			string policy_string = file.ReadToEnd();
+			load_policy_from_File (file);
 			file.Close();
-			load_policy_from_string (policy_string);
 
 			editor_file = fc.Filename;
 		}
@@ -377,13 +382,14 @@ public partial class MainWindow: Gtk.Window
 		System.Diagnostics.Process.Start ("/usr/bin/gnome-terminal", args);
 	}
 
-	public void load_policy_from_string(string p)
+	public void load_policy_from_File(StreamReader p)
 	{
+		policyTree.readPolicyTree (p);
 
 	}
 
 	public string save_policy_to_string()
 	{
-		return "";
+		return policyTree.printTree ();
 	}
 }
