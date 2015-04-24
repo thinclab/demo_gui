@@ -332,7 +332,7 @@ public partial class MainWindow: Gtk.Window
 		{
 		case 0:
 			// policy file
-			if (filechsr_fugitive.Filename == null) {
+			if (filechsr_uav1.Filename == null) {
 				show_error ("You must choose a policy file for UAV1 before launching");
 				return;
 			}
@@ -370,7 +370,7 @@ public partial class MainWindow: Gtk.Window
 		{
 		case 0:
 			// policy file
-			if (filechsr_fugitive.Filename == null) {
+			if (filechsr_uav2.Filename == null) {
 				show_error ("You must choose a policy file for UAV2 before launching");
 				return;
 			}
