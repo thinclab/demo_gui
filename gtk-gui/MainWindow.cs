@@ -139,6 +139,8 @@ public partial class MainWindow
 	
 	private global::Gtk.Button btn_launch;
 	
+	private global::Gtk.ScrolledWindow GtkScrolledWindow;
+	
 	private global::Gtk.Fixed PolicyArea;
 
 	protected virtual void Build ()
@@ -712,13 +714,22 @@ public partial class MainWindow
 		global::Gtk.Paned.PanedChild w60 = ((global::Gtk.Paned.PanedChild)(this.hpaned1 [this.vbox]));
 		w60.Resize = false;
 		// Container child hpaned1.Gtk.Paned+PanedChild
+		this.GtkScrolledWindow = new global::Gtk.ScrolledWindow ();
+		this.GtkScrolledWindow.Name = "GtkScrolledWindow";
+		this.GtkScrolledWindow.ShadowType = ((global::Gtk.ShadowType)(1));
+		// Container child GtkScrolledWindow.Gtk.Container+ContainerChild
+		global::Gtk.Viewport w61 = new global::Gtk.Viewport ();
+		w61.ShadowType = ((global::Gtk.ShadowType)(0));
+		// Container child GtkViewport.Gtk.Container+ContainerChild
 		this.PolicyArea = new global::Gtk.Fixed ();
 		this.PolicyArea.Name = "PolicyArea";
 		this.PolicyArea.HasWindow = false;
-		this.hpaned1.Add (this.PolicyArea);
+		w61.Add (this.PolicyArea);
+		this.GtkScrolledWindow.Add (w61);
+		this.hpaned1.Add (this.GtkScrolledWindow);
 		this.vbox0.Add (this.hpaned1);
-		global::Gtk.Box.BoxChild w62 = ((global::Gtk.Box.BoxChild)(this.vbox0 [this.hpaned1]));
-		w62.Position = 1;
+		global::Gtk.Box.BoxChild w65 = ((global::Gtk.Box.BoxChild)(this.vbox0 [this.hpaned1]));
+		w65.Position = 1;
 		this.Add (this.vbox0);
 		if ((this.Child != null)) {
 			this.Child.ShowAll ();

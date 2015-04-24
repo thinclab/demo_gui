@@ -16,7 +16,7 @@ using System.Diagnostics;
 
 namespace demo_gui
 {
-	public class Util {
+	public static class Util {
 		public static void Tokenize(string str1, out List<string> tokens, char[] delimiterChars){
 			string [] tok = str1.Split(delimiterChars, StringSplitOptions.RemoveEmptyEntries);
 			tokens = new List<string>(tok);
@@ -25,9 +25,9 @@ namespace demo_gui
 
 	public class PolicyTreeNode{
 		public uint numObservations;
-		int horizon;
-		int action;
-		List<PolicyTreeNode> children;
+		public int horizon;
+		public int action;
+		public List<PolicyTreeNode> children;
 
 
 		public PolicyTreeNode(uint numObs){
@@ -95,7 +95,7 @@ namespace demo_gui
 					for(int tSp=0; tSp < numTabSpace; tSp++){
 						sw.Write("\t");
 					}
-					sw.Write ("obs ");sw.Write (obs);sw.Write(" -> ");
+					sw.Write(" -> ");sw.Write ("obs ");sw.Write (obs);sw.Write(" -> ");
 					sw.Write (children[obs].printNode(numTabSpace+1));
 				}
 			}
@@ -105,9 +105,9 @@ namespace demo_gui
 	};
 
 	public class PolicyTree{
-		PolicyTreeNode root;
-		uint horizon;
-		uint numObservations;
+		public PolicyTreeNode root;
+		public uint horizon;
+		public uint numObservations;
 
 		public PolicyTree(){
 			horizon = 0;
@@ -178,6 +178,7 @@ namespace demo_gui
 			sw.Write(root.printNode());
 			return sw.ToString ();
 		}
+
 	};
 
 }

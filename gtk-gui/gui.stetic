@@ -160,6 +160,7 @@
                         <property name="MemberName" />
                         <property name="CanFocus">True</property>
                         <property name="Label" translatable="yes">Simulated Drones</property>
+                        <property name="Active">True</property>
                         <property name="DrawIndicator">True</property>
                         <property name="HasLabel">True</property>
                         <property name="UseUnderline">True</property>
@@ -820,9 +821,22 @@ Keyboard</property>
               </packing>
             </child>
             <child>
-              <widget class="Gtk.Fixed" id="PolicyArea">
+              <widget class="Gtk.ScrolledWindow" id="GtkScrolledWindow">
                 <property name="MemberName" />
-                <property name="HasWindow">False</property>
+                <property name="ShadowType">In</property>
+                <child>
+                  <widget class="Gtk.Viewport" id="GtkViewport">
+                    <property name="MemberName" />
+                    <property name="ShadowType">None</property>
+                    <child>
+                      <widget class="Gtk.Fixed" id="PolicyArea">
+                        <property name="MemberName" />
+                        <property name="ShowScrollbars">True</property>
+                        <property name="HasWindow">False</property>
+                      </widget>
+                    </child>
+                  </widget>
+                </child>
               </widget>
             </child>
           </widget>

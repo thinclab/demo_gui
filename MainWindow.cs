@@ -3,24 +3,43 @@ using Gtk;
 using System.Diagnostics;
 using demo_gui;
 using System.IO;
+using System.Collections.Generic;
+
+
+public struct PolicyNode {
+	public uint nestingNum;
+	public uint verticalNum;
+	public Gtk.ComboBox action;
+	public List<Gtk.Label> obsLabels;
+	public List<PolicyNode> children;
+	public PolicyTreeNode dataRef;
+}
 
 public partial class MainWindow: Gtk.Window
 {
 	protected string file_path = "/home/kbogert/gatac_workspace/src/gatacdronecontrol/bin/";
 
 	public string[] actions = {"Move North", "Move South", "Move East", "Move West", "Stay"};
+	public string[] observations = {"Enemy North", "Enemy South", "Enemy East", "Enemy West"};
 
 	protected string editor_file;
 
 	PolicyTree policyTree;
 
+	PolicyNode visPolicyTree;
+
+	int verticalSize = 40;
+	int nestingSize = 100;
+
+	Random rnd;
 
 	public MainWindow () : base (Gtk.WindowType.Toplevel)
 	{
+		rnd = new Random ();
 		Build ();
 
-		policyTree = new PolicyTree ();
 		init_controls ();
+		visPolicyTree = createRandomPolicyDisplay (4);
 	}
 
 	protected void OnDeleteEvent (object sender, DeleteEventArgs a)
@@ -384,12 +403,111 @@ public partial class MainWindow: Gtk.Window
 
 	public void load_policy_from_File(StreamReader p)
 	{
+		clearPolicyDisplay (visPolicyTree);
+		policyTree = new PolicyTree ();
 		policyTree.readPolicyTree (p);
-
+		visPolicyTree = buildPolicyDisplay ();
 	}
 
 	public string save_policy_to_string()
 	{
+		updatePolicyFromDisplay ();
 		return policyTree.printTree ();
+	}
+
+
+	public void clearPolicyDisplay(PolicyNode node) {
+		PolicyArea.Remove (node.action);
+		node.action.Dispose ();
+		foreach(Gtk.Label l in node.obsLabels) {
+			PolicyArea.Remove (l);
+			l.Dispose ();
+		}
+
+		foreach (PolicyNode p in node.children) {
+			clearPolicyDisplay (p);
+		}
+
+	}
+
+	public PolicyNode buildPolicyDisplay() {
+		uint vertical = 0;
+		return _buildPolicyDisplay (policyTree.root, 0, ref vertical);
+	}
+
+	public PolicyNode _buildPolicyDisplay(PolicyTreeNode data, uint nesting, ref uint vertical) {
+		PolicyNode returnval = new PolicyNode ();
+		returnval.nestingNum = nesting;
+		returnval.verticalNum = vertical;
+		returnval.children = new List<PolicyNode> ();
+		returnval.obsLabels = new List<Label> ();
+		returnval.dataRef = data;
+
+		returnval.action = new ComboBox ();
+		returnval.action = global::Gtk.ComboBox.NewText ();
+		foreach(string s in actions)
+			returnval.action.AppendText (s);
+
+		returnval.action.Name = "cbo_action" + nesting.ToString() + ":" + vertical.ToString();
+		returnval.action.Active = data.action;
+		this.PolicyArea.Put(returnval.action, (int)nesting * nestingSize, (int)vertical * verticalSize);
+
+		for (int i = 0; i < data.children.Count; i++) {
+			// create and place label for observation
+			vertical++;
+
+			Label lbl = new Gtk.Label ();
+			lbl.Text = observations [i];
+			lbl.Name = "lbl_obs" + nesting.ToString () + ":" + vertical.ToString ();
+			this.PolicyArea.Put (lbl, (int)nesting * nestingSize, (int)vertical * verticalSize);
+			returnval.obsLabels.Add (lbl);
+			// recurse
+
+			returnval.children.Add(_buildPolicyDisplay (data.children [i], nesting + 1, ref vertical));
+
+		}
+		ShowAll ();
+		return returnval;
+	}
+
+
+	public void updatePolicyFromDisplay() {
+		_updatePolicyFromDisplay (visPolicyTree);
+	}
+
+	public void _updatePolicyFromDisplay(PolicyNode p) {
+
+		p.dataRef.action = p.action.Active;
+
+		foreach (PolicyNode ptn in p.children) {
+			_updatePolicyFromDisplay (ptn);
+
+		}
+	}
+
+	public PolicyNode createRandomPolicyDisplay(uint nesting = 0) {
+	
+		policyTree = new PolicyTree ();
+		policyTree.horizon = nesting;
+		policyTree.numObservations = (uint)observations.Length;
+
+		policyTree.root = createRandomPolicy ((int)nesting);
+
+		return buildPolicyDisplay ();
+
+	}
+
+	public PolicyTreeNode createRandomPolicy(int horizon) {
+		PolicyTreeNode returnval = new PolicyTreeNode ((uint)observations.Length);
+		returnval.action = rnd.Next (actions.Length);
+		returnval.horizon = horizon;
+
+		if (horizon > 1) {
+			for( int i = 0; i < observations.Length; i ++ ) {
+				returnval.children.Add (createRandomPolicy (horizon - 1));
+			}
+
+		}
+		return returnval;
 	}
 }
