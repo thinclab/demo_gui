@@ -19,8 +19,11 @@ public partial class MainWindow: Gtk.Window
 {
 	protected string file_path;
 
-	public string[] actions = {"Move North", "Move South", "Move East", "Move West", "Stay"};
-	public string[] observations = {"Enemy North", "Enemy South", "Enemy East", "Enemy West"};
+	public string[] fugitive_actions = {"Move North", "Move South", "Move East", "Move West", "Stay"};
+	public string[] anti_coord_actions = {"Move North", "Move South", "Move East", "Move West", "Land"};
+
+	public string[] fugitive_observations = {"Enemy North", "Enemy South", "Enemy East", "Enemy West"};
+	public string[] anti_coord_observations = {"Other North", "Other South", "Other East", "Other West"};
 
 	protected string editor_file;
 
@@ -40,7 +43,7 @@ public partial class MainWindow: Gtk.Window
 		Build ();
 
 		init_controls ();
-		visPolicyTree = createRandomPolicyDisplay (4);
+		visPolicyTree = createRandomPolicyDisplay (uint.Parse(num_decisions.Text));
 	}
 
 	protected void OnDeleteEvent (object sender, DeleteEventArgs a)
@@ -301,7 +304,7 @@ public partial class MainWindow: Gtk.Window
 				show_error ("You must choose a policy file for the fugitive before launching");
 				return;
 			}
-			args += "policyClient f " + grid_size_rows.Text + " " + grid_size_cols.Text + " " + fug_row.Text + " " + fug_col.Text + " \"" + filechsr_fugitive.Filename + "\"";
+			args += "fugitiveClient f " + grid_size_rows.Text + " " + grid_size_cols.Text + " " + fug_row.Text + " " + fug_col.Text + " " + safe_house_row.Text + " " + safe_house_col.Text + " \"" + filechsr_fugitive.Filename + "\"";
 			break;
 		case 1:
 			// editor policy
@@ -309,7 +312,7 @@ public partial class MainWindow: Gtk.Window
 				show_error ("You must save the editor policy for the fugitive before launching");
 				return;
 			}
-			args += "policyClient f " + grid_size_rows.Text + " " + grid_size_cols.Text + " " + fug_row.Text + " " + fug_col.Text +" \"" + editor_file + "\"";
+			args += "fugitiveClient f " + grid_size_rows.Text + " " + grid_size_cols.Text + " " + fug_row.Text + " " + fug_col.Text + " " + safe_house_row.Text + " " + safe_house_col.Text  + " \"" + editor_file + "\"";
 			break;
 		case 2:
 			// random
@@ -327,6 +330,7 @@ public partial class MainWindow: Gtk.Window
 		args += "\'";
 		System.Diagnostics.Process.Start ("/usr/bin/gnome-terminal", args);
 
+		System.Threading.Thread.Sleep (750);
 
 		// parameters for drone1
 		args = "-e '" + file_path;
@@ -339,7 +343,7 @@ public partial class MainWindow: Gtk.Window
 				show_error ("You must choose a policy file for UAV1 before launching");
 				return;
 			}
-			args += "policyClient u " + grid_size_rows.Text + " " + grid_size_cols.Text + " " + uav1_row.Text + " " + uav1_col.Text + " \"" + filechsr_uav1.Filename + "\"";
+			args += "fugitiveClient u " + grid_size_rows.Text + " " + grid_size_cols.Text + " " + uav1_row.Text + " " + uav1_col.Text + " " + safe_house_row.Text + " " + safe_house_col.Text + " \"" + filechsr_uav1.Filename + "\"";
 			break;
 		case 1:
 			// editor policy
@@ -347,7 +351,7 @@ public partial class MainWindow: Gtk.Window
 				show_error ("You must save the editor policy for UAV1 before launching");
 				return;
 			}
-			args += "policyClient u " + grid_size_rows.Text + " " + grid_size_cols.Text + " " + uav1_row.Text + " " + uav1_col.Text + " \"" + editor_file + "\"";
+			args += "fugitiveClient u " + grid_size_rows.Text + " " + grid_size_cols.Text + " " + uav1_row.Text + " " + uav1_col.Text + " " + safe_house_row.Text + " " + safe_house_col.Text + " \"" + editor_file + "\"";
 			break;
 		case 2:
 			// random
@@ -365,6 +369,7 @@ public partial class MainWindow: Gtk.Window
 		args += "\'";
 		System.Diagnostics.Process.Start ("/usr/bin/gnome-terminal", args);
 
+		System.Threading.Thread.Sleep (750);
 
 		// parameters for drone2
 		args = "-e '" + file_path;
@@ -377,7 +382,7 @@ public partial class MainWindow: Gtk.Window
 				show_error ("You must choose a policy file for UAV2 before launching");
 				return;
 			}
-			args += "policyClient u " + grid_size_rows.Text + " " + grid_size_cols.Text + " " + uav2_row.Text + " " + uav2_col.Text + " \"" + filechsr_uav2.Filename + "\"";
+			args += "fugitiveClient u " + grid_size_rows.Text + " " + grid_size_cols.Text + " " + uav2_row.Text + " " + uav2_col.Text + " " + safe_house_row.Text + " " + safe_house_col.Text + " \"" + filechsr_uav2.Filename + "\"";
 			break;
 		case 1:
 			// editor policy
@@ -385,7 +390,7 @@ public partial class MainWindow: Gtk.Window
 				show_error ("You must save the editor policy for UAV2 before launching");
 				return;
 			}
-			args += "policyClient u " + grid_size_rows.Text + " " + grid_size_cols.Text + " " + uav2_row.Text + " " + uav2_col.Text + " \"" + editor_file + "\"";
+			args += "fugitiveClient u " + grid_size_rows.Text + " " + grid_size_cols.Text + " " + uav2_row.Text + " " + uav2_col.Text + " " + safe_house_row.Text + " " + safe_house_col.Text + " \"" + editor_file + "\"";
 			break;
 		case 2:
 			// random
@@ -439,6 +444,8 @@ public partial class MainWindow: Gtk.Window
 	}
 
 	public PolicyNode _buildPolicyDisplay(PolicyTreeNode data, uint nesting, ref uint vertical) {
+
+
 		PolicyNode returnval = new PolicyNode ();
 		returnval.nestingNum = nesting;
 		returnval.verticalNum = vertical;
@@ -448,7 +455,7 @@ public partial class MainWindow: Gtk.Window
 
 		returnval.action = new ComboBox ();
 		returnval.action = global::Gtk.ComboBox.NewText ();
-		foreach(string s in actions)
+		foreach(string s in getActions())
 			returnval.action.AppendText (s);
 
 		returnval.action.Name = "cbo_action" + nesting.ToString() + ":" + vertical.ToString();
@@ -461,7 +468,7 @@ public partial class MainWindow: Gtk.Window
 			vertical++;
 
 			Label lbl = new Gtk.Label ();
-			lbl.Text = observations [i];
+			lbl.Text = getObservations() [i];
 			lbl.Name = "lbl_obs" + nesting.ToString () + ":" + vertical.ToString ();
 			this.PolicyArea.Put (lbl, (int)nesting * nestingSize, (int)vertical * verticalSize);
 			lbl.Show();
@@ -493,7 +500,7 @@ public partial class MainWindow: Gtk.Window
 	
 		policyTree = new PolicyTree ();
 		policyTree.horizon = nesting;
-		policyTree.numObservations = (uint)observations.Length;
+		policyTree.numObservations = (uint)getObservations().Length;
 
 		policyTree.root = createRandomPolicy ((int)nesting);
 
@@ -502,16 +509,52 @@ public partial class MainWindow: Gtk.Window
 	}
 
 	public PolicyTreeNode createRandomPolicy(int horizon) {
-		PolicyTreeNode returnval = new PolicyTreeNode ((uint)observations.Length);
-		returnval.action = rnd.Next (actions.Length);
+		PolicyTreeNode returnval = new PolicyTreeNode ((uint)getObservations().Length);
+		returnval.action = rnd.Next (getActions().Length);
 		returnval.horizon = horizon;
 
 		if (horizon > 1) {
-			for( int i = 0; i < observations.Length; i ++ ) {
+			for( int i = 0; i < getObservations().Length; i ++ ) {
 				returnval.children.Add (createRandomPolicy (horizon - 1));
 			}
 
 		}
 		return returnval;
+	}
+
+	protected string[] getActions() {
+		return (cbo_scenario.Active == 0 ? fugitive_actions : anti_coord_actions);
+	}
+
+	protected string[] getObservations() {
+		return (cbo_scenario.Active == 0 ? fugitive_observations : anti_coord_observations);
+	}
+	protected void changed_decisions (object sender, EventArgs e)
+	{
+		try {
+			if (editor_file == null) {
+				// build a new random policy
+				clearPolicyDisplay (visPolicyTree);
+				policyTree = new PolicyTree ();
+				visPolicyTree = createRandomPolicyDisplay (uint.Parse(num_decisions.Text));
+
+			} else {
+				mnu_save(sender, e);
+				editor_file = null;
+				clearPolicyDisplay (visPolicyTree);
+				policyTree = new PolicyTree ();
+				visPolicyTree = createRandomPolicyDisplay (uint.Parse(num_decisions.Text));
+
+			}
+		} catch (FormatException fe) {
+
+		}
+
+	}
+
+
+	protected void change_scenario (object sender, EventArgs e)
+	{
+		changed_decisions(sender, e);
 	}
 }
