@@ -21,6 +21,7 @@ public partial class MainWindow: Gtk.Window
 
 	public string[] fugitive_actions = {"Move North", "Move South", "Move East", "Move West", "Stay"};
 	public string[] anti_coord_actions = {"Move North", "Move South", "Move East", "Move West", "Land"};
+	public string[] coord_actions = {"Move North", "Move South", "Move East", "Move West", "Land", "Stay"};
 
 	public string[] fugitive_observations = {"Enemy North", "Enemy South", "Enemy East", "Enemy West"};
 	public string[] anti_coord_observations = {"Other North", "Other South", "Other East", "Other West"};
@@ -85,7 +86,7 @@ public partial class MainWindow: Gtk.Window
 		}
 	}
 
-	protected void uav1_control_changed (object sender, EventArgs e)
+	protected void uav1_control_changed  (object sender, EventArgs e)
 	{
 		if (cbo_uav1_mode.Active == 0) {
 			filechsr_uav1.Visible = true;
@@ -288,7 +289,7 @@ public partial class MainWindow: Gtk.Window
 //		string args = "-e \'/bin/bash -c \"export BASH_POST_RC=\\\"" + file_path + "simServerThree\\\"; exec bash\"\'";
 		string args = "-e \'/bin/bash -l -c \"" + file_path + "simServerThree\"\'";
 		if (rdo_phys_drones.Active)
-			args = "-e \'/bin/bash -l -c \"" + file_path + "tagServer\"\'";
+			args = "-e \'/bin/bash -l -c \"" + file_path + "server r 3\"\'";
 		System.Diagnostics.Process.Start ("/usr/bin/gnome-terminal", args);
 
 		System.Threading.Thread.Sleep (1000);
@@ -523,7 +524,19 @@ public partial class MainWindow: Gtk.Window
 	}
 
 	protected string[] getActions() {
-		return (cbo_scenario.Active == 0 ? fugitive_actions : anti_coord_actions);
+		switch (cbo_scenario.Active) {
+		case 0:
+			return fugitive_actions;
+			break;
+
+		case 1:
+			return anti_coord_actions;
+			break;
+
+		default:
+			return coord_actions;
+			break;
+		}
 	}
 
 	protected string[] getObservations() {
@@ -556,5 +569,44 @@ public partial class MainWindow: Gtk.Window
 	protected void change_scenario (object sender, EventArgs e)
 	{
 		changed_decisions(sender, e);
+
+		switch (cbo_scenario.Active) {
+		case 0:
+			frame_fugitive_settings.Visible = true;
+			frame_coord_settings.Visible = false;
+			break;
+
+		case 1:
+			frame_fugitive_settings.Visible = false;
+			frame_coord_settings.Visible = true;
+			break;
+
+		default:
+			frame_fugitive_settings.Visible = false;
+			frame_coord_settings.Visible = true;
+			break;
+		}
+
+
 	}
+
+
+	protected void coord_uav1_control_changed (object sender, EventArgs e)
+	{
+		if (cbo_coord_uav1_mode.Active == 0) {
+			filechsr_coord_uav1.Visible = true;
+		} else {
+			filechsr_coord_uav1.Visible = false;
+		}
+	}
+
+	protected void coord_uav2_control_changed (object sender, EventArgs e)
+	{
+		if (cbo_coord_uav2_mode.Active == 0) {
+			filechsr_coord_uav2.Visible = true;
+		} else {
+			filechsr_coord_uav2.Visible = false;
+		}
+	}
+
 }
