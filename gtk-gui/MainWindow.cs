@@ -157,11 +157,11 @@ public partial class MainWindow
 	
 	private global::Gtk.FileChooserButton filechsr_coord_uav1;
 	
-	private global::Gtk.Entry coord_uav1_row1;
+	private global::Gtk.Entry coord_uav1_row;
 	
 	private global::Gtk.Label label20;
 	
-	private global::Gtk.Entry coord_uav1_col1;
+	private global::Gtk.Entry coord_uav1_col;
 	
 	private global::Gtk.Alignment alignment14;
 	
@@ -173,11 +173,11 @@ public partial class MainWindow
 	
 	private global::Gtk.FileChooserButton filechsr_coord_uav2;
 	
-	private global::Gtk.Entry coord_uav2_row1;
+	private global::Gtk.Entry coord_uav2_row;
 	
 	private global::Gtk.Label label22;
 	
-	private global::Gtk.Entry coord_uav2_col1;
+	private global::Gtk.Entry coord_uav2_col;
 	
 	private global::Gtk.Alignment alignment15;
 	
@@ -808,7 +808,6 @@ public partial class MainWindow
 		this.cbo_coord_uav1_mode = global::Gtk.ComboBox.NewText ();
 		this.cbo_coord_uav1_mode.AppendText (global::Mono.Unix.Catalog.GetString ("Policy File"));
 		this.cbo_coord_uav1_mode.AppendText (global::Mono.Unix.Catalog.GetString ("Editor Policy"));
-		this.cbo_coord_uav1_mode.AppendText (global::Mono.Unix.Catalog.GetString ("Random"));
 		this.cbo_coord_uav1_mode.AppendText (global::Mono.Unix.Catalog.GetString ("Keyboard"));
 		this.cbo_coord_uav1_mode.Name = "cbo_coord_uav1_mode";
 		this.hbox13.Add (this.cbo_coord_uav1_mode);
@@ -823,15 +822,15 @@ public partial class MainWindow
 		global::Gtk.Box.BoxChild w61 = ((global::Gtk.Box.BoxChild)(this.hbox13 [this.filechsr_coord_uav1]));
 		w61.Position = 2;
 		// Container child hbox13.Gtk.Box+BoxChild
-		this.coord_uav1_row1 = new global::Gtk.Entry ();
-		this.coord_uav1_row1.CanFocus = true;
-		this.coord_uav1_row1.Name = "coord_uav1_row1";
-		this.coord_uav1_row1.IsEditable = true;
-		this.coord_uav1_row1.WidthChars = 2;
-		this.coord_uav1_row1.MaxLength = 2;
-		this.coord_uav1_row1.InvisibleChar = '●';
-		this.hbox13.Add (this.coord_uav1_row1);
-		global::Gtk.Box.BoxChild w62 = ((global::Gtk.Box.BoxChild)(this.hbox13 [this.coord_uav1_row1]));
+		this.coord_uav1_row = new global::Gtk.Entry ();
+		this.coord_uav1_row.CanFocus = true;
+		this.coord_uav1_row.Name = "coord_uav1_row";
+		this.coord_uav1_row.IsEditable = true;
+		this.coord_uav1_row.WidthChars = 2;
+		this.coord_uav1_row.MaxLength = 2;
+		this.coord_uav1_row.InvisibleChar = '●';
+		this.hbox13.Add (this.coord_uav1_row);
+		global::Gtk.Box.BoxChild w62 = ((global::Gtk.Box.BoxChild)(this.hbox13 [this.coord_uav1_row]));
 		w62.Position = 3;
 		w62.Expand = false;
 		// Container child hbox13.Gtk.Box+BoxChild
@@ -844,15 +843,15 @@ public partial class MainWindow
 		w63.Expand = false;
 		w63.Fill = false;
 		// Container child hbox13.Gtk.Box+BoxChild
-		this.coord_uav1_col1 = new global::Gtk.Entry ();
-		this.coord_uav1_col1.CanFocus = true;
-		this.coord_uav1_col1.Name = "coord_uav1_col1";
-		this.coord_uav1_col1.IsEditable = true;
-		this.coord_uav1_col1.WidthChars = 2;
-		this.coord_uav1_col1.MaxLength = 2;
-		this.coord_uav1_col1.InvisibleChar = '●';
-		this.hbox13.Add (this.coord_uav1_col1);
-		global::Gtk.Box.BoxChild w64 = ((global::Gtk.Box.BoxChild)(this.hbox13 [this.coord_uav1_col1]));
+		this.coord_uav1_col = new global::Gtk.Entry ();
+		this.coord_uav1_col.CanFocus = true;
+		this.coord_uav1_col.Name = "coord_uav1_col";
+		this.coord_uav1_col.IsEditable = true;
+		this.coord_uav1_col.WidthChars = 2;
+		this.coord_uav1_col.MaxLength = 2;
+		this.coord_uav1_col.InvisibleChar = '●';
+		this.hbox13.Add (this.coord_uav1_col);
+		global::Gtk.Box.BoxChild w64 = ((global::Gtk.Box.BoxChild)(this.hbox13 [this.coord_uav1_col]));
 		w64.Position = 5;
 		w64.Expand = false;
 		// Container child hbox13.Gtk.Box+BoxChild
@@ -883,7 +882,6 @@ public partial class MainWindow
 		this.cbo_coord_uav2_mode = global::Gtk.ComboBox.NewText ();
 		this.cbo_coord_uav2_mode.AppendText (global::Mono.Unix.Catalog.GetString ("Policy File"));
 		this.cbo_coord_uav2_mode.AppendText (global::Mono.Unix.Catalog.GetString ("Editor Policy"));
-		this.cbo_coord_uav2_mode.AppendText (global::Mono.Unix.Catalog.GetString ("Random"));
 		this.cbo_coord_uav2_mode.AppendText (global::Mono.Unix.Catalog.GetString ("Keyboard"));
 		this.cbo_coord_uav2_mode.Name = "cbo_coord_uav2_mode";
 		this.hbox14.Add (this.cbo_coord_uav2_mode);
@@ -898,15 +896,15 @@ public partial class MainWindow
 		global::Gtk.Box.BoxChild w69 = ((global::Gtk.Box.BoxChild)(this.hbox14 [this.filechsr_coord_uav2]));
 		w69.Position = 2;
 		// Container child hbox14.Gtk.Box+BoxChild
-		this.coord_uav2_row1 = new global::Gtk.Entry ();
-		this.coord_uav2_row1.CanFocus = true;
-		this.coord_uav2_row1.Name = "coord_uav2_row1";
-		this.coord_uav2_row1.IsEditable = true;
-		this.coord_uav2_row1.WidthChars = 2;
-		this.coord_uav2_row1.MaxLength = 2;
-		this.coord_uav2_row1.InvisibleChar = '●';
-		this.hbox14.Add (this.coord_uav2_row1);
-		global::Gtk.Box.BoxChild w70 = ((global::Gtk.Box.BoxChild)(this.hbox14 [this.coord_uav2_row1]));
+		this.coord_uav2_row = new global::Gtk.Entry ();
+		this.coord_uav2_row.CanFocus = true;
+		this.coord_uav2_row.Name = "coord_uav2_row";
+		this.coord_uav2_row.IsEditable = true;
+		this.coord_uav2_row.WidthChars = 2;
+		this.coord_uav2_row.MaxLength = 2;
+		this.coord_uav2_row.InvisibleChar = '●';
+		this.hbox14.Add (this.coord_uav2_row);
+		global::Gtk.Box.BoxChild w70 = ((global::Gtk.Box.BoxChild)(this.hbox14 [this.coord_uav2_row]));
 		w70.Position = 3;
 		w70.Expand = false;
 		// Container child hbox14.Gtk.Box+BoxChild
@@ -919,15 +917,15 @@ public partial class MainWindow
 		w71.Expand = false;
 		w71.Fill = false;
 		// Container child hbox14.Gtk.Box+BoxChild
-		this.coord_uav2_col1 = new global::Gtk.Entry ();
-		this.coord_uav2_col1.CanFocus = true;
-		this.coord_uav2_col1.Name = "coord_uav2_col1";
-		this.coord_uav2_col1.IsEditable = true;
-		this.coord_uav2_col1.WidthChars = 2;
-		this.coord_uav2_col1.MaxLength = 2;
-		this.coord_uav2_col1.InvisibleChar = '●';
-		this.hbox14.Add (this.coord_uav2_col1);
-		global::Gtk.Box.BoxChild w72 = ((global::Gtk.Box.BoxChild)(this.hbox14 [this.coord_uav2_col1]));
+		this.coord_uav2_col = new global::Gtk.Entry ();
+		this.coord_uav2_col.CanFocus = true;
+		this.coord_uav2_col.Name = "coord_uav2_col";
+		this.coord_uav2_col.IsEditable = true;
+		this.coord_uav2_col.WidthChars = 2;
+		this.coord_uav2_col.MaxLength = 2;
+		this.coord_uav2_col.InvisibleChar = '●';
+		this.hbox14.Add (this.coord_uav2_col);
+		global::Gtk.Box.BoxChild w72 = ((global::Gtk.Box.BoxChild)(this.hbox14 [this.coord_uav2_col]));
 		w72.Position = 5;
 		w72.Expand = false;
 		// Container child hbox14.Gtk.Box+BoxChild

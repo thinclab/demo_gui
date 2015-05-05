@@ -870,7 +870,6 @@ Keyboard</property>
                                                 <property name="IsTextCombo">True</property>
                                                 <property name="Items" translatable="yes">Policy File
 Editor Policy
-Random
 Keyboard</property>
                                                 <signal name="Changed" handler="coord_uav1_control_changed" />
                                               </widget>
@@ -892,7 +891,7 @@ Keyboard</property>
                                               </packing>
                                             </child>
                                             <child>
-                                              <widget class="Gtk.Entry" id="coord_uav1_row1">
+                                              <widget class="Gtk.Entry" id="coord_uav1_row">
                                                 <property name="MemberName" />
                                                 <property name="CanFocus">True</property>
                                                 <property name="IsEditable">True</property>
@@ -919,7 +918,7 @@ Keyboard</property>
                                               </packing>
                                             </child>
                                             <child>
-                                              <widget class="Gtk.Entry" id="coord_uav1_col1">
+                                              <widget class="Gtk.Entry" id="coord_uav1_col">
                                                 <property name="MemberName" />
                                                 <property name="CanFocus">True</property>
                                                 <property name="IsEditable">True</property>
@@ -975,7 +974,6 @@ Keyboard</property>
                                                 <property name="IsTextCombo">True</property>
                                                 <property name="Items" translatable="yes">Policy File
 Editor Policy
-Random
 Keyboard</property>
                                                 <signal name="Changed" handler="coord_uav2_control_changed" />
                                               </widget>
@@ -997,7 +995,7 @@ Keyboard</property>
                                               </packing>
                                             </child>
                                             <child>
-                                              <widget class="Gtk.Entry" id="coord_uav2_row1">
+                                              <widget class="Gtk.Entry" id="coord_uav2_row">
                                                 <property name="MemberName" />
                                                 <property name="CanFocus">True</property>
                                                 <property name="IsEditable">True</property>
@@ -1024,7 +1022,7 @@ Keyboard</property>
                                               </packing>
                                             </child>
                                             <child>
-                                              <widget class="Gtk.Entry" id="coord_uav2_col1">
+                                              <widget class="Gtk.Entry" id="coord_uav2_col">
                                                 <property name="MemberName" />
                                                 <property name="CanFocus">True</property>
                                                 <property name="IsEditable">True</property>

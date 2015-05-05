@@ -73,6 +73,12 @@ public partial class MainWindow: Gtk.Window
 		uav2_row.Text = "1";
 		uav2_col.Text = "4";
 
+		coord_uav1_row.Text = "1";
+		coord_uav1_col.Text = "0";
+
+		coord_uav2_row.Text = "1";
+		coord_uav2_col.Text = "2";
+
 		max_moves.Text = "4";
 
 	}
@@ -159,6 +165,20 @@ public partial class MainWindow: Gtk.Window
 	protected void launch_button (object sender, EventArgs e)
 	{
 
+		if (cbo_scenario.Active == 0) {
+			if (!check_fugitive ())
+				return;
+		} else {
+			if (!check_coordination ())
+				return;
+		}
+
+		launch_demo ();
+	}
+
+	protected bool check_fugitive() 
+	{
+
 		// Check all parameters here
 		switch (cbo_fug_mode.Active) 
 		{
@@ -166,14 +186,14 @@ public partial class MainWindow: Gtk.Window
 			// policy file
 			if (filechsr_fugitive.Filename == null) {
 				show_error ("You must choose a policy file for the fugitive before launching");
-				return;
+				return false;
 			}
 			break;
 		case 1:
 			// editor policy
 			if (editor_file == null) {
 				show_error ("You must save the editor policy for the fugitive before launching");
-				return;
+				return false;
 			}
 			break;
 		case 2:
@@ -184,16 +204,16 @@ public partial class MainWindow: Gtk.Window
 			break;
 		default:
 			show_error ("You must select a control for the fugitive.");
-			return;
+			return false;
 			break;
 		}
 		if (int.Parse (fug_row.Text) < 0 || int.Parse (fug_row.Text) >= int.Parse (grid_size_rows.Text)) {
 			show_error("Starting row position for the fugitive is invalid.");
-			return;
+			return false;
 		}
 		if (int.Parse (fug_col.Text) < 0 || int.Parse (fug_col.Text) >= int.Parse (grid_size_cols.Text)) {
 			show_error("Starting column position for the fugitive is invalid.");
-			return;
+			return false;
 		}
 
 		switch (cbo_uav1_mode.Active) 
@@ -202,14 +222,14 @@ public partial class MainWindow: Gtk.Window
 			// policy file
 			if (filechsr_uav1.Filename == null) {
 				show_error ("You must choose a policy file for UAV1 before launching");
-				return;
+				return false;
 			}
 			break;
 		case 1:
 			// editor policy
 			if (editor_file == null) {
 				show_error ("You must save the editor policy for UAV1 before launching");
-				return;
+				return false;
 			}
 			break;
 		case 2:
@@ -220,16 +240,16 @@ public partial class MainWindow: Gtk.Window
 			break;
 		default:
 			show_error ("You must select a control for UAV1.");
-			return;
+			return false;
 			break;
 		}
 		if (int.Parse (uav1_row.Text) < 0 || int.Parse (uav1_row.Text) >= int.Parse (grid_size_rows.Text)) {
 			show_error("Starting row position for UAV1 is invalid.");
-			return;
+			return false;
 		}
 		if (int.Parse (uav1_col.Text) < 0 || int.Parse (uav1_col.Text) >= int.Parse (grid_size_cols.Text)) {
 			show_error("Starting column position for UAV1 is invalid.");
-			return;
+			return false;
 		}
 
 
@@ -239,14 +259,14 @@ public partial class MainWindow: Gtk.Window
 			// policy file
 			if (filechsr_uav2.Filename == null) {
 				show_error ("You must choose a policy file for UAV2 before launching");
-				return;
+				return false;
 			}
 			break;
 		case 1:
 			// editor policy
 			if (editor_file == null) {
 				show_error ("You must save the editor policy for UAV2 before launching");
-				return;
+				return false;
 			}
 			break;
 		case 2:
@@ -257,19 +277,93 @@ public partial class MainWindow: Gtk.Window
 			break;
 		default:
 			show_error ("You must select a control for UAV2.");
-			return;
+			return false;
 			break;
 		}
 		if (int.Parse (uav2_row.Text) < 0 || int.Parse (uav2_row.Text) >= int.Parse (grid_size_rows.Text)) {
 			show_error("Starting row position for UAV2 is invalid.");
-			return;
+			return false;
 		}
 		if (int.Parse (uav2_col.Text) < 0 || int.Parse (uav2_col.Text) >= int.Parse (grid_size_cols.Text)) {
 			show_error("Starting column position for UAV2 is invalid.");
-			return;
+			return false;
 		}
 
-		launch_demo ();
+		return true;
+	}
+
+	protected bool check_coordination() 
+	{
+		// Check all parameters here
+
+		switch (cbo_coord_uav1_mode.Active) 
+		{
+		case 0:
+			// policy file
+			if (filechsr_coord_uav1.Filename == null) {
+				show_error ("You must choose a policy file for UAV1 before launching");
+				return false;
+			}
+			break;
+		case 1:
+			// editor policy
+			if (editor_file == null) {
+				show_error ("You must save the editor policy for UAV1 before launching");
+				return false;
+			}
+			break;
+		case 2:
+			// keyboard
+			break;
+		default:
+			show_error ("You must select a control for UAV1.");
+			return false;
+			break;
+		}
+		if (int.Parse (coord_uav1_row.Text) < 0 || int.Parse (coord_uav1_row.Text) >= int.Parse (grid_size_rows.Text)) {
+			show_error("Starting row position for UAV1 is invalid.");
+			return false;
+		}
+		if (int.Parse (coord_uav1_col.Text) < 0 || int.Parse (coord_uav1_col.Text) >= int.Parse (grid_size_cols.Text)) {
+			show_error("Starting column position for UAV1 is invalid.");
+			return false;
+		}
+
+
+		switch (cbo_coord_uav2_mode.Active) 
+		{
+		case 0:
+			// policy file
+			if (filechsr_coord_uav2.Filename == null) {
+				show_error ("You must choose a policy file for UAV2 before launching");
+				return false;
+			}
+			break;
+		case 1:
+			// editor policy
+			if (editor_file == null) {
+				show_error ("You must save the editor policy for UAV2 before launching");
+				return false;
+			}
+			break;
+		case 2:
+			// keyboard
+			break;
+		default:
+			show_error ("You must select a control for UAV2.");
+			return false;
+			break;
+		}
+		if (int.Parse (coord_uav2_row.Text) < 0 || int.Parse (coord_uav2_row.Text) >= int.Parse (grid_size_rows.Text)) {
+			show_error("Starting row position for UAV2 is invalid.");
+			return false;
+		}
+		if (int.Parse (coord_uav2_col.Text) < 0 || int.Parse (coord_uav2_col.Text) >= int.Parse (grid_size_cols.Text)) {
+			show_error("Starting column position for UAV2 is invalid.");
+			return false;
+		}
+
+		return true;
 	}
 
 	public void show_error(string errormsg)
@@ -281,13 +375,21 @@ public partial class MainWindow: Gtk.Window
 		md.Destroy();
 	}
 
-	public void launch_demo() 
+	public void launch_demo()
+	{
+		if (cbo_scenario.Active == 0)
+			launch_fugitive_demo ();
+		else
+			launch_coordination_demo ();
+
+	}
+
+
+	public void launch_fugitive_demo() 
 	{
 
-
 		// start server
-//		string args = "-e \'/bin/bash -c \"export BASH_POST_RC=\\\"" + file_path + "simServerThree\\\"; exec bash\"\'";
-		string args = "-e \'/bin/bash -l -c \"" + file_path + "simServerThree\"\'";
+		string args = "-e \'/bin/bash -l -c \"" + file_path + "server s 3\"\'";
 		if (rdo_phys_drones.Active)
 			args = "-e \'/bin/bash -l -c \"" + file_path + "server r 3\"\'";
 		System.Diagnostics.Process.Start ("/usr/bin/gnome-terminal", args);
@@ -400,6 +502,87 @@ public partial class MainWindow: Gtk.Window
 		case 3:
 			// keyboard
 			args += "keyboard " + grid_size_rows.Text + " " + grid_size_cols.Text + " " + uav2_row.Text + " " + uav2_col.Text;
+			break;
+		default:
+			show_error ("You must select a control for UAV2.");
+			return;
+			break;
+		}
+		args += "\'";
+		System.Diagnostics.Process.Start ("/usr/bin/gnome-terminal", args);
+	}
+
+
+	public void launch_coordination_demo() 
+	{
+
+		// start server
+		string args = "-e \'/bin/bash -l -c \"" + file_path + "server s 2\"\'";
+		if (rdo_phys_drones.Active)
+			args = "-e \'/bin/bash -l -c \"" + file_path + "server r 2\"\'";
+		System.Diagnostics.Process.Start ("/usr/bin/gnome-terminal", args);
+
+		System.Threading.Thread.Sleep (1000);
+
+		// parameters for drone1
+		args = "-e '" + file_path;
+
+		switch (cbo_coord_uav1_mode.Active) 
+		{
+		case 0:
+			// policy file
+			if (filechsr_coord_uav1.Filename == null) {
+				show_error ("You must choose a policy file for UAV1 before launching");
+				return;
+			}
+			args += "anticoordClient " + grid_size_rows.Text + " " + grid_size_cols.Text + " " + coord_uav1_row.Text + " " + coord_uav1_col.Text + " \"" + filechsr_coord_uav1.Filename + "\"";
+			break;
+		case 1:
+			// editor policy
+			if (editor_file == null) {
+				show_error ("You must save the editor policy for UAV1 before launching");
+				return;
+			}
+			args += "anticoordClient " + grid_size_rows.Text + " " + grid_size_cols.Text + " " + coord_uav1_row.Text + " " + coord_uav1_col.Text + " \"" + editor_file + "\"";
+			break;
+		case 2:
+			// keyboard
+			args += "keyboard " + grid_size_rows.Text + " " + grid_size_cols.Text + " " + coord_uav1_row.Text + " " + coord_uav1_col.Text;
+			break;
+		default:
+			show_error ("You must select a control for UAV1.");
+			return;
+			break;
+		}
+		args += "\'";
+		System.Diagnostics.Process.Start ("/usr/bin/gnome-terminal", args);
+
+		System.Threading.Thread.Sleep (750);
+
+		// parameters for drone2
+		args = "-e '" + file_path;
+
+		switch (cbo_coord_uav2_mode.Active) 
+		{
+		case 0:
+			// policy file
+			if (filechsr_coord_uav2.Filename == null) {
+				show_error ("You must choose a policy file for UAV2 before launching");
+				return;
+			}
+			args += "anticoordClient " + grid_size_rows.Text + " " + grid_size_cols.Text + " " + coord_uav2_row.Text + " " + coord_uav2_col.Text + " \"" + filechsr_coord_uav2.Filename + "\"";
+			break;
+		case 1:
+			// editor policy
+			if (editor_file == null) {
+				show_error ("You must save the editor policy for UAV2 before launching");
+				return;
+			}
+			args += "anticoordClient " + grid_size_rows.Text + " " + grid_size_cols.Text + " " + coord_uav2_row.Text + " " + coord_uav2_col.Text + " \"" + editor_file + "\"";
+			break;
+		case 2:
+			// keyboard
+			args += "keyboard " + grid_size_rows.Text + " " + grid_size_cols.Text + " " + coord_uav2_row.Text + " " + coord_uav2_col.Text;
 			break;
 		default:
 			show_error ("You must select a control for UAV2.");
