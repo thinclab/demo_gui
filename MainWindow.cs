@@ -61,17 +61,17 @@ public partial class MainWindow: Gtk.Window
 		grid_size_rows.Text = "5";
 		grid_size_cols.Text = "5";
 
-		safe_house_row.Text = "3";
-		safe_house_col.Text = "2";
+		safe_house_col.Text = "3";
+		safe_house_row.Text = "2";
 
-		fug_row.Text = "1";
-		fug_col.Text = "2";
+		fug_col.Text = "1";
+		fug_row.Text = "2";
 
-		uav1_row.Text = "2";
-		uav1_col.Text = "1";
+		uav1_col.Text = "2";
+		uav1_row.Text = "1";
 
-		uav2_row.Text = "1";
-		uav2_col.Text = "4";
+		uav2_col.Text = "1";
+		uav2_row.Text = "4";
 
 		coord_uav1_row.Text = "1";
 		coord_uav1_col.Text = "0";
