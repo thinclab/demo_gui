@@ -535,7 +535,7 @@ public partial class MainWindow: Gtk.Window
 				show_error ("You must choose a policy file for UAV1 before launching");
 				return;
 			}
-			args += "anticoordClient " + grid_size_rows.Text + " " + grid_size_cols.Text + " " + coord_uav1_row.Text + " " + coord_uav1_col.Text + " \"" + filechsr_coord_uav1.Filename + "\"";
+			args += "anticoordClient " + grid_size_rows.Text + " " + grid_size_cols.Text + " " + coord_uav1_row.Text + " " + coord_uav1_col.Text + " \"" + filechsr_coord_uav1.Filename + "\" 0";
 			break;
 		case 1:
 			// editor policy
@@ -543,7 +543,7 @@ public partial class MainWindow: Gtk.Window
 				show_error ("You must save the editor policy for UAV1 before launching");
 				return;
 			}
-			args += "anticoordClient " + grid_size_rows.Text + " " + grid_size_cols.Text + " " + coord_uav1_row.Text + " " + coord_uav1_col.Text + " \"" + editor_file + "\"";
+			args += "anticoordClient " + grid_size_rows.Text + " " + grid_size_cols.Text + " " + coord_uav1_row.Text + " " + coord_uav1_col.Text + " \"" + editor_file + "\" 0";
 			break;
 		case 2:
 			// keyboard
@@ -570,7 +570,7 @@ public partial class MainWindow: Gtk.Window
 				show_error ("You must choose a policy file for UAV2 before launching");
 				return;
 			}
-			args += "anticoordClient " + grid_size_rows.Text + " " + grid_size_cols.Text + " " + coord_uav2_row.Text + " " + coord_uav2_col.Text + " \"" + filechsr_coord_uav2.Filename + "\"";
+			args += "anticoordClient " + grid_size_rows.Text + " " + grid_size_cols.Text + " " + coord_uav2_row.Text + " " + coord_uav2_col.Text + " \"" + filechsr_coord_uav2.Filename + "\" 0";
 			break;
 		case 1:
 			// editor policy
@@ -578,7 +578,7 @@ public partial class MainWindow: Gtk.Window
 				show_error ("You must save the editor policy for UAV2 before launching");
 				return;
 			}
-			args += "anticoordClient " + grid_size_rows.Text + " " + grid_size_cols.Text + " " + coord_uav2_row.Text + " " + coord_uav2_col.Text + " \"" + editor_file + "\"";
+			args += "anticoordClient " + grid_size_rows.Text + " " + grid_size_cols.Text + " " + coord_uav2_row.Text + " " + coord_uav2_col.Text + " \"" + editor_file + "\" 0";
 			break;
 		case 2:
 			// keyboard
