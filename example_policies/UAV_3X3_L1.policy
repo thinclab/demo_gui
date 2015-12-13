@@ -1,0 +1,26 @@
+# Safe house is at top right corner of the 3X3 grid, i.e. Location (2,2)
+# UAV starts at row 1 col 2, i.e. Location (1,2)
+Horizon: 3
+Observations: 4
+Vector 0 : -> act 3
+ 	-> obs 0 -> act 0
+	 	-> obs 0 -> act 2
+	 	-> obs 1 -> act 2
+	 	-> obs 2 -> act 2
+	 	-> obs 3 -> act 2
+ 	-> obs 1 -> act 0
+	 	-> obs 0 -> act 2
+	 	-> obs 1 -> act 2
+	 	-> obs 2 -> act 2
+	 	-> obs 3 -> act 2
+ 	-> obs 2 -> act 0
+	 	-> obs 0 -> act 2
+	 	-> obs 1 -> act 2
+	 	-> obs 2 -> act 2
+	 	-> obs 3 -> act 2
+ 	-> obs 3 -> act 0
+	 	-> obs 0 -> act 2
+	 	-> obs 1 -> act 2
+	 	-> obs 2 -> act 2
+	 	-> obs 3 -> act 2
+

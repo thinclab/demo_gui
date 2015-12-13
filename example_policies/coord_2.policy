@@ -1,0 +1,23 @@
+HORIZON: 3
+OBSERVATIONS: 4
+Vector 0: -> act 0
+	 -> obs 0 -> act 5
+		 -> obs 0 -> act 3
+		 -> obs 1 -> act 3
+		 -> obs 2 -> act 3
+		 -> obs 3 -> act 3
+	 -> obs 1 -> act 5
+		 -> obs 0 -> act 3
+		 -> obs 1 -> act 3
+		 -> obs 2 -> act 3
+		 -> obs 3 -> act 3
+	 -> obs 2 -> act 5
+		 -> obs 0 -> act 3
+		 -> obs 1 -> act 3
+		 -> obs 2 -> act 3
+		 -> obs 3 -> act 3
+	 -> obs 3 -> act 5
+		 -> obs 0 -> act 3
+		 -> obs 1 -> act 3
+		 -> obs 2 -> act 3
+		 -> obs 3 -> act 3
