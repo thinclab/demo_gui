@@ -14,3 +14,5 @@ Running
 -----
 
 Simply execute bin/Release/demo_gui.exe
+
+Example policies are provided in the example_policies directory
