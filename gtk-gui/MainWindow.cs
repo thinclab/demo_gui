@@ -965,7 +965,7 @@ public partial class MainWindow
 		// Container child alignment1.Gtk.Container+ContainerChild
 		this.image1 = new global::Gtk.Image ();
 		this.image1.Name = "image1";
-		this.image1.Pixbuf = new global::Gdk.Pixbuf (global::System.IO.Path.Combine (global::System.AppDomain.CurrentDomain.BaseDirectory, "./GaTAC_logo.png"));
+		this.image1.Pixbuf = new global::Gdk.Pixbuf (global::System.IO.Path.Combine (global::System.AppDomain.CurrentDomain.BaseDirectory, "../../GaTAC_logo.png"));
 		this.alignment1.Add (this.image1);
 		this.vbox.Add (this.alignment1);
 		global::Gtk.Box.BoxChild w82 = ((global::Gtk.Box.BoxChild)(this.vbox [this.alignment1]));
